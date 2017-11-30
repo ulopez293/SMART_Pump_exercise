@@ -4,9 +4,9 @@ The savvy cats over at SMART Pump would like to be able to allow users to login 
 
 Feel free to use any other libraries or tool chains as long as the core code is javascript and node.js. npm (https://www.npmjs.org) is your friend - no need to recreate the wheel. 
 
-You will find the base data file in ```/data```
+You will find the base data file in `/data`
 
-Wireframes: http://app.uxpin.com/2c7e9e216803455e598f8718d1bedb6178719917/12083985cm
+Wireframes: `assets/wireframes.png`
 
 ## Time limits
 
