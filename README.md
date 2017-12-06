@@ -20,7 +20,7 @@ This exercise is meant showcase your creativity and talent in problem solving ag
 * Authorized users can check their account balance
 * Allow the user to change their details
 * lowdb (DB) -> https://github.com/typicode/lowdb
-* node.js (v0.10.x) -> http://nodejs.org/ 
+* node.js -> http://nodejs.org/ 
 
 ## Bonus Points
 
