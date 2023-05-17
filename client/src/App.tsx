@@ -5,6 +5,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query"
 import { UserList } from "./components/UserList"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { ProtectedRoute } from "./components/protected/ProtectedRoute"
+import { Login } from "./pages/login/Login"
 
 function App() {
   const [queryClient] = useState(() => new QueryClient())
@@ -26,7 +27,7 @@ function App() {
           <Routes>
             <Route path="/" element={<ProtectedRoute><h1>/home</h1></ProtectedRoute>} />
             <Route path="/balance" element={<ProtectedRoute><h1>/balance</h1></ProtectedRoute>} />
-            <Route path="/login" element={<h1 className="text-3xl font-bold underline">/login</h1>} />
+            <Route path="/login" element={<Login />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Routes>
         </BrowserRouter>
