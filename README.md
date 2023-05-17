@@ -3,7 +3,7 @@
 * tRPC - API
 * TS - Node / Express and Libraries
 * TSX - React / Vite and Libraries
-* TailWind - CSS
+* Tailwind - CSS
 * LowDB - Data Base JSON
 
 

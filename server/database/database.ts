@@ -10,6 +10,7 @@ export const getConnection =  async () => {
         const adapter = new JSONFile(file)
         const defaultData = JSON.parse(data)
         const db = new Low(adapter, defaultData)
+        console.log(db.data)
         return db
     } catch (error) {
         console.error(`Error to read file JSON: ${error}`)
