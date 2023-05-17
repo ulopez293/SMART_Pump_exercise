@@ -1,3 +1,12 @@
+## TECHNOLOGIES USED
+
+* tRPC - API
+* TS - Node / Express and Libraries
+* TSX - React / Vite and Libraries
+* TailWind - CSS
+* LowDB - Data Base JSON
+
+
 # Simple Developer Exercise 
 
 The savvy cats over at SMART Pump would like to be able to allow users to login to their account, check their balance and update their personal details. Write a simple web application (API and UI) using node.js and lowdb that lets users accomplish those tasks. 
