@@ -8,6 +8,6 @@ interface ChildrenProps {
 
 export const ProtectedRoute = ({ children }: ChildrenProps) => {
     const [cartData,] = useAtom(userDataAtom)
-  if (!cartData.login) return <Navigate to="/login" replace />
-  return <div>{children}</div>
+    if (!cartData.login) return <Navigate to="/login" replace />
+    return <div>{children}</div>
 }

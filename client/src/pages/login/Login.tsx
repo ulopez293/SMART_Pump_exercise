@@ -2,11 +2,11 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import logo from '../../assets/logo.png'
 
 export const Login = () => {
-    const [email, setEmail] = useState('')
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value)
+    const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setUsername(e.target.value)
     }
 
     const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -15,8 +15,7 @@ export const Login = () => {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        // Aquí puedes realizar la lógica de autenticación o enviar los datos a un servidor
-        console.log('Email:', email)
+        console.log('Username:', username)
         console.log('Password:', password)
     }
 
@@ -27,17 +26,18 @@ export const Login = () => {
                     <img src={logo} alt="Logo de la company" className="h-32 w-40 mb-4" />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                        Email
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+                        Username
                     </label>
                     <input
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="email"
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={handleEmailChange}
+                        id="username"
+                        type="text"
+                        placeholder="Username"
+                        value={username}
+                        onChange={handleUsernameChange}
                         required
+                        pattern="[A-Za-z].{1,}"
                     />
                 </div>
                 <div className="mb-8">

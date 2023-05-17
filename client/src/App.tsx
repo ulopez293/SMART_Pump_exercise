@@ -2,10 +2,10 @@ import { httpBatchLink } from "@trpc/client"
 import { trpc } from './utils/trpc'
 import { useState } from "react"
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query"
-import { UserList } from "./components/UserList"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { ProtectedRoute } from "./components/protected/ProtectedRoute"
 import { Login } from "./pages/login/Login"
+import { NavigateBar } from "./components/navigate/NavigateBar"
 
 function App() {
   const [queryClient] = useState(() => new QueryClient())
@@ -22,7 +22,7 @@ function App() {
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        {/* <UserList /> */}
+        <NavigateBar />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<ProtectedRoute><h1>/home</h1></ProtectedRoute>} />
