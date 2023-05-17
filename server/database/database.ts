@@ -1,7 +1,7 @@
 import { join } from 'path'
 import fs from 'fs'
 
-export const getConnection =  async () => {
+export const getConnection = async () => {
     try {
         const { Low } = await import('lowdb')
         const { JSONFile } = await import('lowdb/node')
@@ -10,7 +10,6 @@ export const getConnection =  async () => {
         const adapter = new JSONFile(file)
         const defaultData = JSON.parse(data)
         const db = new Low(adapter, defaultData)
-        console.log(db.data)
         return db
     } catch (error) {
         console.error(`Error to read file JSON: ${error}`)
