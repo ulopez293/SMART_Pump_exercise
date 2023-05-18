@@ -15,7 +15,7 @@ const getUsers = publicProcedure.query(async () => {
 
 const getUserLogged = publicProcedure.input(
         z.object({
-            username: z.string().trim().nonempty("fisrt name field is empty"),
+            username: z.string().trim().nonempty("fisrt name field is empty").transform(value => value.toLowerCase()),
             password: z.string().trim().nonempty("password field is empty")
         })
     ).mutation(async ({ input }) => {
@@ -24,7 +24,7 @@ const getUserLogged = publicProcedure.input(
         const users = UsersArraySchema.parse(db?.data.users)
         const foundUser = users.find((user) => {
             const fullName = `${user.name.first} ${user.name.last}`.toLowerCase()
-            return fullName === input.username.toLocaleLowerCase() && user.password === input.password
+            return (fullName === input.username || input.username === user.email.toLocaleLowerCase()) && user.password === input.password
         }) 
         const user = UserSchema.parse(foundUser)
         return user

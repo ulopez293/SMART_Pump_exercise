@@ -5,7 +5,7 @@ import { userDataAtom } from "../../atoms/userDataAtom"
 import { AiFillEdit } from "react-icons/ai"
 
 export const NavigateBar = () => {
-    const [userData,] = useAtom(userDataAtom)
+    const [userData, setUserData] = useAtom(userDataAtom)
     if (!userData.login) return null
 
     return (
@@ -27,7 +27,7 @@ export const NavigateBar = () => {
                 <Dropdown
                     arrowIcon={false}
                     inline={true}
-                    label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true} />}
+                    label={<Avatar alt="User settings" img={userData.picture} rounded={true} />}
                 >
                     <Dropdown.Header>
                         <span className="block text-sm">
@@ -41,7 +41,7 @@ export const NavigateBar = () => {
                         <AiFillEdit className="mr-2"/> Edit Profile
                     </Dropdown.Item>
                     <Dropdown.Divider />
-                    <Dropdown.Item>
+                    <Dropdown.Item onClick={() => setUserData({ login: false })}>
                         Sign out
                     </Dropdown.Item>
                 </Dropdown>
