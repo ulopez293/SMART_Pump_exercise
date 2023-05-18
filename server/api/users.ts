@@ -15,7 +15,7 @@ const getUsers = publicProcedure.query(async () => {
 
 const getUserLogged = publicProcedure.input(
         z.object({
-            username: z.string().trim().nonempty("fisrt name field is empty").transform(value => value.toLowerCase()),
+            username: z.string().trim().nonempty("username field is empty").transform(value => value.toLowerCase()),
             password: z.string().trim().nonempty("password field is empty")
         })
     ).mutation(async ({ input }) => {
