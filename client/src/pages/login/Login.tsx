@@ -10,15 +10,10 @@ export const Login = () => {
     const [userData, setUserData] = useAtom(userDataAtom)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    
     useEffect(() => { if (userData.login) navigate('/') }, [userData.login, navigate])
 
     const { mutate } = trpc.user.signIn.useMutation()
-    // const { isLoading, error, data, refetch } = trpc.user.get.useQuery(undefined, {
-    //     refetchOnWindowFocus: true
-    // })
-    // if (isLoading) return <h1>Loading...</h1>
-    // if (error) return <h1>An error has occurred: {error.message}</h1>
+
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         mutate({ username, password }, {

@@ -1,6 +1,7 @@
 import { useAtom } from "jotai"
-import { Navigate, redirect } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 import { userDataAtom } from "../../atoms/userDataAtom"
+import { Footing } from "../footer/Footing"
 
 interface ChildrenProps {
     children: React.ReactNode
@@ -9,5 +10,8 @@ interface ChildrenProps {
 export const ProtectedRoute = ({ children }: ChildrenProps) => {
     const [userData,] = useAtom(userDataAtom)
     if (!userData.login) return <Navigate to="/" replace />
-    return <div>{children}</div>
+    return <div>
+        {children}
+        <Footing />
+    </div>
 }

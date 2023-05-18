@@ -1,6 +1,8 @@
 import { Tabs } from "flowbite-react"
 import { HiAdjustments, HiClipboardList, HiUserCircle } from 'react-icons/hi'
 import { MdDashboard } from 'react-icons/md'
+import { ProfileSection } from "./profile/ProfileSection"
+import { BalanceSection } from "./balance/BalanceSection"
 
 export const Home = () => {
     return (
@@ -12,32 +14,28 @@ export const Home = () => {
                 title="Profile"
                 icon={HiUserCircle}
             >
-                Profile content
+                <ProfileSection />
             </Tabs.Item>
             <Tabs.Item
                 active={true}
                 title="Dashboard"
                 icon={MdDashboard}
             >
-                Dashboard content
+                <BalanceSection />
             </Tabs.Item>
             <Tabs.Item
                 title="Settings"
                 icon={HiAdjustments}
+                disabled={true}
             >
                 Settings content
             </Tabs.Item>
             <Tabs.Item
                 title="Contacts"
                 icon={HiClipboardList}
+                disabled={true}
             >
                 Contacts content
-            </Tabs.Item>
-            <Tabs.Item
-                disabled={true}
-                title="Disabled"
-            >
-                Disabled content
             </Tabs.Item>
         </Tabs.Group>
     )

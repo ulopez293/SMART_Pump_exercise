@@ -2,10 +2,12 @@ import { Avatar, Dropdown, Navbar } from "flowbite-react"
 import logo from "../../assets/logo.png"
 import { useAtom } from "jotai"
 import { userDataAtom } from "../../atoms/userDataAtom"
+import { AiFillEdit } from "react-icons/ai"
 
 export const NavigateBar = () => {
     const [userData,] = useAtom(userDataAtom)
     if (!userData.login) return null
+
     return (
         <Navbar
             fluid={true}
@@ -29,20 +31,14 @@ export const NavigateBar = () => {
                 >
                     <Dropdown.Header>
                         <span className="block text-sm">
-                            Bonnie Green
+                            {userData.name?.first} {userData.name?.last}
                         </span>
                         <span className="block truncate text-sm font-medium">
-                            name@flowbite.com
+                            {userData.email}
                         </span>
                     </Dropdown.Header>
                     <Dropdown.Item>
-                        Dashboard
-                    </Dropdown.Item>
-                    <Dropdown.Item>
-                        Settings
-                    </Dropdown.Item>
-                    <Dropdown.Item>
-                        Earnings
+                        <AiFillEdit className="mr-2"/> Edit Profile
                     </Dropdown.Item>
                     <Dropdown.Divider />
                     <Dropdown.Item>
@@ -53,13 +49,13 @@ export const NavigateBar = () => {
             </div>
             <Navbar.Collapse>
                 <Navbar.Link
-                    href="/balance"
+                    href="/"
                     active={true}
                 >
                     Home
                 </Navbar.Link>
-                <Navbar.Link href="/balance">
-                    Balance
+                <Navbar.Link disabled={true}>
+                    Other Route
                 </Navbar.Link>
             </Navbar.Collapse>
         </Navbar>
