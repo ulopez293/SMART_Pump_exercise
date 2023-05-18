@@ -1,22 +1,37 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import logo from '../../assets/logo.png'
+import { trpc } from '../../utils/trpc'
+import { userDataAtom } from '../../atoms/userDataAtom'
+import { useAtom } from 'jotai'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 export const Login = () => {
+    const navigate = useNavigate()
+    const [userData, setUserData] = useAtom(userDataAtom)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    
+    useEffect(() => { if (userData.login) navigate('/') }, [userData.login, navigate])
 
-    const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setUsername(e.target.value)
-    }
-
-    const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value)
-    }
-
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const { mutate } = trpc.user.signIn.useMutation()
+    // const { isLoading, error, data, refetch } = trpc.user.get.useQuery(undefined, {
+    //     refetchOnWindowFocus: true
+    // })
+    // if (isLoading) return <h1>Loading...</h1>
+    // if (error) return <h1>An error has occurred: {error.message}</h1>
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log('Username:', username)
-        console.log('Password:', password)
+        mutate({ username, password }, {
+            onSuccess: (data) => {
+                const { password, ...restData } = data
+                setUserData((prev) => ({ ...prev, login: true, ...restData }))
+                navigate(`/`)
+            },
+            onError: (error) => {
+                console.log(error)
+                alert(`fields do not match`)
+            }
+        })
     }
 
     return (
@@ -33,11 +48,12 @@ export const Login = () => {
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="username"
                         type="text"
-                        placeholder="Username"
+                        placeholder="Username (first and last)"
                         value={username}
-                        onChange={handleUsernameChange}
+                        onChange={(e) => setUsername(e.target.value)}
                         required
                         pattern="[A-Za-z].{1,}"
+                        minLength={3}
                     />
                 </div>
                 <div className="mb-8">
@@ -50,8 +66,9 @@ export const Login = () => {
                         type="password"
                         placeholder="Password"
                         value={password}
-                        onChange={handlePasswordChange}
+                        onChange={(e) => setPassword(e.target.value)}
                         required
+                        minLength={3}
                     />
                 </div>
                 <div className="flex items-center justify-between">

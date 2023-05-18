@@ -7,7 +7,7 @@ interface ChildrenProps {
 }
 
 export const ProtectedRoute = ({ children }: ChildrenProps) => {
-    const [cartData,] = useAtom(userDataAtom)
-    if (!cartData.login) return <Navigate to="/login" replace />
+    const [userData,] = useAtom(userDataAtom)
+    if (!userData.login) return <Navigate to="/" replace />
     return <div>{children}</div>
 }

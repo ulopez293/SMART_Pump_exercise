@@ -1,7 +1,11 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react"
 import logo from "../../assets/logo.png"
+import { useAtom } from "jotai"
+import { userDataAtom } from "../../atoms/userDataAtom"
 
 export const NavigateBar = () => {
+    const [userData,] = useAtom(userDataAtom)
+    if (!userData.login) return null
     return (
         <Navbar
             fluid={true}
@@ -49,22 +53,13 @@ export const NavigateBar = () => {
             </div>
             <Navbar.Collapse>
                 <Navbar.Link
-                    href="/navbars"
+                    href="/balance"
                     active={true}
                 >
                     Home
                 </Navbar.Link>
-                <Navbar.Link href="/navbars">
-                    About
-                </Navbar.Link>
-                <Navbar.Link href="/navbars">
-                    Services
-                </Navbar.Link>
-                <Navbar.Link href="/navbars">
-                    Pricing
-                </Navbar.Link>
-                <Navbar.Link href="/navbars">
-                    Contact
+                <Navbar.Link href="/balance">
+                    Balance
                 </Navbar.Link>
             </Navbar.Collapse>
         </Navbar>

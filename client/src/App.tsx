@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { ProtectedRoute } from "./components/protected/ProtectedRoute"
 import { Login } from "./pages/login/Login"
 import { NavigateBar } from "./components/navigate/NavigateBar"
+import { Home } from "./pages/home/Home"
 
 function App() {
   const [queryClient] = useState(() => new QueryClient())
@@ -25,7 +26,7 @@ function App() {
         <NavigateBar />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<ProtectedRoute><h1>/home</h1></ProtectedRoute>} />
+            <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="/balance" element={<ProtectedRoute><h1>/balance</h1></ProtectedRoute>} />
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
