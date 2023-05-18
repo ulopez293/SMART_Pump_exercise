@@ -9,7 +9,9 @@ interface ChildrenProps {
 
 export const ProtectedRoute = ({ children }: ChildrenProps) => {
     const [userData,] = useAtom(userDataAtom)
-    if (!userData.login) return <Navigate to="/" replace />
+    console.log(`entro`)
+    
+    if (!userData.login) return <Navigate to="/login" replace />
     return <div>
         {children}
         <Footing />
