@@ -1,9 +1,9 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import logo from '../../assets/logo.png'
 import { trpc } from '../../utils/trpc'
 import { userDataAtom } from '../../atoms/userDataAtom'
 import { useAtom } from 'jotai'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export const Login = () => {
     const navigate = useNavigate()
