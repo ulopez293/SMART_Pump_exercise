@@ -14,8 +14,6 @@ export const NavigateBar = () => {
     const { isLoading, error, data, refetch } = trpc.user.getUser.useQuery({ email: userData.email })
     if (isLoading) return <h1>Loading...</h1>
     if (error) return <h1>An error has occurred: {error.message}</h1>
-
-    console.log(data)
     
     return (
         <>
