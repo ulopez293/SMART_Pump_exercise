@@ -5,11 +5,18 @@ import { userDataAtom } from "../../atoms/userDataAtom"
 import { AiFillEdit } from "react-icons/ai"
 import { useState } from "react"
 import { EditProfile } from "../../pages/home/profile/EditProfile"
+import { trpc } from "../../utils/trpc"
 
 export const NavigateBar = () => {
     const [userData, setUserData] = useAtom(userDataAtom)
     const [modal, setModal] = useState(false)
-    if (!userData.login) return null
+
+    const { isLoading, error, data, refetch } = trpc.user.getUser.useQuery({ email: userData.email })
+    if (isLoading) return <h1>Loading...</h1>
+    if (error) return <h1>An error has occurred: {error.message}</h1>
+
+    console.log(data)
+    
     return (
         <>
             <Navbar
@@ -30,21 +37,21 @@ export const NavigateBar = () => {
                     <Dropdown
                         arrowIcon={false}
                         inline={true}
-                        label={<Avatar alt="User settings" img={userData.picture} rounded={true} />}
+                        label={<Avatar alt="User settings" img={data.picture} rounded={true} />}
                     >
                         <Dropdown.Header>
                             <span className="block text-sm">
-                                {userData.name?.first} {userData.name?.last}
+                                {data.name?.first} {data.name?.last}
                             </span>
                             <span className="block truncate text-sm font-medium">
-                                {userData.email}
+                                {data.email}
                             </span>
                         </Dropdown.Header>
-                        <Dropdown.Item onClick={()=>setModal(true)}>
+                        <Dropdown.Item onClick={()=>{setModal(true)}}>
                             <AiFillEdit className="mr-2" /> Edit Profile
                         </Dropdown.Item>
                         <Dropdown.Divider />
-                        <Dropdown.Item onClick={() => setUserData({ login: false })}>
+                        <Dropdown.Item onClick={() => setUserData({ login: false, email: `` })}>
                             Sign out
                         </Dropdown.Item>
                     </Dropdown>
@@ -62,7 +69,7 @@ export const NavigateBar = () => {
                     </Navbar.Link>
                 </Navbar.Collapse>
             </Navbar>
-            <EditProfile modal={modal} setModal={setModal}/>
+            {modal ? <EditProfile modal={modal} setModal={setModal}/> : null}
         </>
     )
 }

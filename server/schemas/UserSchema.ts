@@ -9,7 +9,7 @@ export const UserSchema = z.object({
         age: z.number().optional(),
         eyeColor: z.string().trim().nonempty("eyeColor field is empty").optional(),
         name: z.object({
-          first: z.string().trim().nonempty("fisrt name field is empty").optional(),
+          first: z.string().trim().nonempty("fisrt name field is empty"),
           last: z.string().trim().nonempty("last name field is empty").optional(),
         }),
         company: z.string().trim().nonempty("company field is empty").optional(),

@@ -10,17 +10,18 @@ export const Login = () => {
     const [userData, setUserData] = useAtom(userDataAtom)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const { mutate } = trpc.user.signIn.useMutation()
+    
     useEffect(() => { if (userData.login) navigate('/') }, [userData.login, navigate])
     if (userData.login) return null
 
-    const { mutate } = trpc.user.signIn.useMutation()
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         mutate({ username, password }, {
             onSuccess: (data) => {
                 const { password, ...restData } = data
-                setUserData((prev) => ({ ...prev, login: true, ...restData }))
+                setUserData((prev) => ({ ...prev, login: true, email: restData.email }))
                 navigate(`/`)
             },
             onError: (error) => {

@@ -7,6 +7,7 @@ import { ProtectedRoute } from "./components/protected/ProtectedRoute"
 import { Login } from "./pages/login/Login"
 import { NavigateBar } from "./components/navigate/NavigateBar"
 import { Home } from "./pages/home/Home"
+import { Footing } from "./components/footer/Footing"
 
 function App() {
   const [queryClient] = useState(() => new QueryClient())
@@ -23,13 +24,14 @@ function App() {
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <NavigateBar />
         <BrowserRouter>
+          <ProtectedRoute><NavigateBar /></ProtectedRoute>
           <Routes>
             <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Routes>
+          <ProtectedRoute><Footing /></ProtectedRoute>
         </BrowserRouter>
       </QueryClientProvider>
     </trpc.Provider>

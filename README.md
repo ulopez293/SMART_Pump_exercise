@@ -6,6 +6,9 @@
 * Tailwind - CSS
 * LowDB - Data Base JSON
 
+## Deployment demo URL
+
+* coming soon...
 
 # Simple Developer Exercise 
 
