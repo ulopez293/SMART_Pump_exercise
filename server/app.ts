@@ -3,7 +3,7 @@ import morgan from "morgan"
 //import * as trpc from "@trpc/server"
 import * as trpcExpress from "@trpc/server/adapters/express"
 import { router, createContext } from "./trpc.ts"
-import { usersRouter } from "./api/users.ts"
+import { usersRouter } from "./api/usersRouter.ts"
 import cors from "cors"
 
 const app = express()
