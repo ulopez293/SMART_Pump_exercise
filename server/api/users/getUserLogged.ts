@@ -2,6 +2,8 @@ import z from "zod"
 import { getConnection } from "../../database/database"
 import { publicProcedure } from "../../trpc"
 import { UserSchema, UsersArraySchema } from "../../schemas/UserSchema"
+import jwt from "jsonwebtoken"
+import { SecretKey } from "../../enums/SecretKey"
 
 export const getUserLogged = publicProcedure.input(
     z.object({
@@ -17,7 +19,8 @@ export const getUserLogged = publicProcedure.input(
             return (fullName === input.username || input.username === user.email.toLocaleLowerCase()) && user.password === input.password
         }) 
         const user = UserSchema.parse(foundUser)
-        return user
+        const token = jwt.sign({ sub: user.email }, SecretKey.JWT)
+        return { user, token }
     } catch (error) {
         throw new Error(`Error ${error}`)
     }

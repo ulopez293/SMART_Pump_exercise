@@ -1,9 +1,15 @@
 
+import z from "zod"
 import { getConnection } from "../../database/database"
-import { publicProcedure } from "../../trpc"
 import { UsersArraySchema } from "../../schemas/UserSchema"
+import { tokenProcedure } from "../../trpc"
 
-export const getUsers = publicProcedure.query(async () => {
+export const getUsers = tokenProcedure.input(
+    z.object({
+        prueba: z.string().trim().nonempty("prueba field is empty")
+    }).strict()
+).query(async (opts) => {
+    //const { ctx, input } = opts    
     try {
         const db = await getConnection()
         const users = UsersArraySchema.parse(db?.data.users)

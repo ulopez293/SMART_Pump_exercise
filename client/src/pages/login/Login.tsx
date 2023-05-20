@@ -20,8 +20,14 @@ export const Login = () => {
         e.preventDefault()
         mutate({ username, password }, {
             onSuccess: (data) => {
-                const { password, ...restData } = data
-                setUserData((prev) => ({ ...prev, login: true, email: restData.email }))
+                const { user, token } = data
+                const { password, ...restData } = user
+                setUserData((prev) => ({ 
+                    ...prev, 
+                    login: true, 
+                    email: restData.email ,
+                    token: token
+                }))
                 navigate(`/`)
             },
             onError: (error) => {

@@ -1,6 +1,7 @@
 import { useAtom } from "jotai"
 import { userDataAtom } from "../../../atoms/userDataAtom"
 import { trpc } from "../../../utils/trpc"
+import { UserList } from "../../../components/UserList"
 
 
 export const BalanceSection = () => {
@@ -17,6 +18,7 @@ export const BalanceSection = () => {
                     <h2 className="text-xl font-semibold mb-2">Balance</h2>
                     <p className="text-2xl">{data.isActive ? data?.balance : `you are not active user`}</p>
                 </div>
+                <UserList />
             </div>
         </div>
     )
