@@ -28,6 +28,7 @@ export const Login = () => {
                     email: restData.email ,
                     token: token
                 }))
+                localStorage.setItem(`token`, token)
                 navigate(`/`)
             },
             onError: (error) => {

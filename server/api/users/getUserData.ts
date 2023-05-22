@@ -1,9 +1,9 @@
 import z from "zod"
 import { getConnection } from "../../database/database"
-import { publicProcedure } from "../../trpc"
 import { UsersArraySchema } from "../../schemas/UserSchema"
+import { tokenProcedure } from "../../trpc"
 
-export const getUserData = publicProcedure.input(
+export const getUserData = tokenProcedure.input(
     z.object({
         email: z.string().trim().nonempty("email field is empty").email(),
         token: z.string().trim().nonempty("token field is empty").optional()

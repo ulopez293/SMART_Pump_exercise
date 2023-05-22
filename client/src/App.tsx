@@ -14,7 +14,18 @@ import { userDataAtom } from "./atoms/userDataAtom"
 function App() {
   const [userData, ] = useAtom(userDataAtom)
   const [queryClient] = useState(() => new QueryClient())
-  const [trpcClient, setTRPCClient] = useState(trpc.createClient({ links: [ httpBatchLink({ url: 'http://localhost:3000/trpc' }) ] }))
+  const [trpcClient, setTRPCClient] = useState(trpc.createClient({ 
+    links: [ 
+      httpBatchLink({ 
+        url: 'http://localhost:3000/trpc',
+        headers() {
+          return {
+            Authorization: localStorage.token,
+          };
+        },
+      }) 
+    ] 
+  }))
   useEffect(() => {
     if (userData.token) {
       const newTRPCClient = trpc.createClient({

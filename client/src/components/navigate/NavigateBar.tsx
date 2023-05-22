@@ -49,7 +49,10 @@ export const NavigateBar = () => {
                             <AiFillEdit className="mr-2" /> Edit Profile
                         </Dropdown.Item>
                         <Dropdown.Divider />
-                        <Dropdown.Item onClick={() => setUserData({ login: false, email: ``, token: '' })}>
+                        <Dropdown.Item onClick={() => {
+                            localStorage.removeItem('token')
+                            setUserData({ login: false, email: ``, token: '' })
+                        }}>
                             Sign out
                         </Dropdown.Item>
                     </Dropdown>

@@ -1,9 +1,9 @@
 import z from "zod"
 import { getConnection } from "../../database/database"
-import { publicProcedure } from "../../trpc"
 import { UserSchema, UsersArraySchema } from "../../schemas/UserSchema"
+import { tokenProcedure } from "../../trpc"
 
-export const updateUser = publicProcedure.input(
+export const updateUser = tokenProcedure.input(
     z.object({
         age: z.number().optional(),
         eyeColor: z.string().trim().nonempty("eyeColor field is empty").optional(),
