@@ -13,8 +13,8 @@ interface EditProfileProps {
 export const EditProfile = ({ modal, setModal }: EditProfileProps) => {
     const [userData, ] = useAtom(userDataAtom)
     const [toggle, setToggle] = useState(false)
-    const { isLoading, error, data, refetch } = trpc.user.getUser.useQuery({ email: userData.email ?? `` })
-    const { mutate } = trpc.user.update.useMutation()
+    const { isLoading, error, data, refetch } = trpc.protectedUser.getUser.useQuery({ email: userData.email ?? `` })
+    const { mutate } = trpc.protectedUser.update.useMutation()
     useEffect(() => { if (data?.isActive) setToggle(data.isActive) }, [data])
 
     useEffect(() => { refetch() } , [modal, data])

@@ -11,7 +11,7 @@ export const NavigateBar = () => {
     const [userData, setUserData] = useAtom(userDataAtom)
     const [modal, setModal] = useState(false)
 
-    const { isLoading, error, data } = trpc.user.getUser.useQuery({ email: userData.email })
+    const { isLoading, error, data } = trpc.protectedUser.getUser.useQuery({ email: userData.email })
     if (isLoading) return <h1>Loading...</h1>
     if (error) return <h1>An error has occurred: {error.message}</h1>
     

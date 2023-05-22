@@ -6,7 +6,7 @@ import { UserList } from "../../../components/UserList"
 
 export const BalanceSection = () => {
     const [userData,] = useAtom(userDataAtom)
-    const { isLoading, error, data } = trpc.user.getUser.useQuery({ email: userData.email })
+    const { isLoading, error, data } = trpc.protectedUser.getUser.useQuery({ email: userData.email })
     if (isLoading) return <h1>Loading...</h1>
     if (error) return <h1>An error has occurred: {error.message}</h1>
     
