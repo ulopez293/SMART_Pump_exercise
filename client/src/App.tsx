@@ -17,10 +17,13 @@ function App() {
   const [trpcClient, setTRPCClient] = useState(clientCreatetRPC(localStorage.token ?? ``))
   
   useEffect(() => {
+    if (userData.token) setUserData((prev) => ({ ...prev, login: true }))
+  }, [trpcClient])
+
+  useEffect(() => {
     if (userData.token) {
       const newTRPCClient = clientCreatetRPC(userData.token)
       setTRPCClient(newTRPCClient)
-      setTimeout(() => setUserData((prev) => ({ ...prev, login: true })) , 100)
     }
   }, [userData.token])
 
