@@ -23,12 +23,7 @@ export const Login = () => {
                 const { user, token } = data
                 const { password, ...restData } = user
                 localStorage.setItem(`token`, token)
-                setUserData((prev) => ({ 
-                    ...prev, 
-                    login: true, 
-                    email: restData.email ,
-                    token: token
-                }))
+                setUserData((prev) => ({ ...prev, email: restData.email, token: token }))
             },
             onError: (error) => {
                 console.log(error)

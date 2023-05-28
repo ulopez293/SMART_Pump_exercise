@@ -12,7 +12,7 @@ import { userDataAtom } from "./atoms/userDataAtom"
 import { clientCreatetRPC } from "./utils/clientCreatetRPC"
 
 function App() {
-  const [userData,] = useAtom(userDataAtom)
+  const [userData, setUserData] = useAtom(userDataAtom)
   const [queryClient] = useState(() => new QueryClient())
   const [trpcClient, setTRPCClient] = useState(clientCreatetRPC(localStorage.token ?? ``))
   
@@ -20,6 +20,7 @@ function App() {
     if (userData.token) {
       const newTRPCClient = clientCreatetRPC(userData.token)
       setTRPCClient(newTRPCClient)
+      setTimeout(() => setUserData((prev) => ({ ...prev, login: true })) , 100)
     }
   }, [userData.token])
 
