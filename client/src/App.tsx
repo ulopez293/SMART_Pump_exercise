@@ -10,36 +10,15 @@ import { Home } from "./pages/home/Home"
 import { Footing } from "./components/footer/Footing"
 import { useAtom } from "jotai"
 import { userDataAtom } from "./atoms/userDataAtom"
+import { clientCreatetRPC } from "./utils/clientCreatetRPC"
 
 function App() {
   const [userData, ] = useAtom(userDataAtom)
   const [queryClient] = useState(() => new QueryClient())
-  const [trpcClient, setTRPCClient] = useState(trpc.createClient({ 
-    links: [ 
-      httpBatchLink({ 
-        url: 'http://localhost:3000/trpc',
-        headers() {
-          return {
-            Authorization: localStorage.token,
-          };
-        },
-      }) 
-    ] 
-  }))
+  const [trpcClient, setTRPCClient] = useState(clientCreatetRPC(JSON.parse(localStorage.userData).token))
   useEffect(() => {
     if (userData.token) {
-      const newTRPCClient = trpc.createClient({
-        links: [
-          httpBatchLink({
-            url: 'http://localhost:3000/trpc',
-            headers() {
-              return {
-                Authorization: userData.token,
-              };
-            },
-          }),
-        ],
-      });
+      const newTRPCClient = clientCreatetRPC(userData.token)
       setTRPCClient(newTRPCClient)
     }
   }, [userData.token])
