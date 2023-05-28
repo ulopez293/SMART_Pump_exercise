@@ -12,9 +12,10 @@ import { userDataAtom } from "./atoms/userDataAtom"
 import { clientCreatetRPC } from "./utils/clientCreatetRPC"
 
 function App() {
-  const [userData, ] = useAtom(userDataAtom)
+  const [userData,] = useAtom(userDataAtom)
   const [queryClient] = useState(() => new QueryClient())
-  const [trpcClient, setTRPCClient] = useState(clientCreatetRPC(JSON.parse(localStorage.userData).token))
+  const [trpcClient, setTRPCClient] = useState(clientCreatetRPC(localStorage.token ?? ``))
+  
   useEffect(() => {
     if (userData.token) {
       const newTRPCClient = clientCreatetRPC(userData.token)

@@ -31,4 +31,4 @@ const validateToken = middleware(async (opts) => {
     return next({ ctx: { token: ctx.token } })
 })
 
-export const tokenProcedure = publicProcedure.use(validateToken)
+export const tokenProcedure = trpc.procedure.use(validateToken)

@@ -22,14 +22,13 @@ export const Login = () => {
             onSuccess: (data) => {
                 const { user, token } = data
                 const { password, ...restData } = user
+                localStorage.setItem(`token`, token)
                 setUserData((prev) => ({ 
                     ...prev, 
                     login: true, 
                     email: restData.email ,
                     token: token
                 }))
-                localStorage.setItem(`token`, token)
-                navigate(`/`)
             },
             onError: (error) => {
                 console.log(error)
