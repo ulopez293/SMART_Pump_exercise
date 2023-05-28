@@ -1,4 +1,3 @@
-import { httpBatchLink } from "@trpc/client"
 import { trpc } from './utils/trpc'
 import { useEffect, useState } from "react"
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query"
