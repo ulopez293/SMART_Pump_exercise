@@ -8,7 +8,7 @@
 
 ## Deployment demo URL
 
-* coming soon...
+* coming soon... but I dont have money
 
 # Simple Developer Exercise 
 
