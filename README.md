@@ -10,7 +10,7 @@
 
 * coming soon... but I dont have money
 
-# Simple Developer Exercise 
+# Description
 
 The savvy cats over at SMART Pump would like to be able to allow users to login to their account, check their balance and update their personal details. Write a simple web application (API and UI) using node.js and lowdb that lets users accomplish those tasks. 
 
